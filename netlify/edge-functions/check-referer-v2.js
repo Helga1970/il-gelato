@@ -5,19 +5,12 @@ export default async (request, context) => {
   console.log('Incoming request URL:', requestUrl);
   console.log('Referer header:', referer);
 
-  // Разрешённые домены
+  // Только эти источники разрешены
   const allowedReferers = [
     'https://pro-culinaria.ru',
     'http://pro-culinaria.ru',
     'https://www.pro-culinaria.ru',
     'http://www.pro-culinaria.ru',
-    'pro-culinaria.ru',
-    'www.pro-culinaria.ru',
-
-    'https://il-gelato.netlify.app',
-    'http://il-gelato.netlify.app',
-    'https://il-gelato.proculinaria-book.ru',
-    'http://il-gelato.proculinaria-book.ru',
   ];
 
   if (referer) {
@@ -27,22 +20,18 @@ export default async (request, context) => {
 
       console.log('Parsed Referer Origin:', refererOrigin);
 
-      const isAllowed = allowedReferers.includes(refererOrigin);
-
-      console.log('Is referer allowed?', isAllowed);
-
-      if (isAllowed) {
-        return context.next();
+      // Разрешаем только если реферер — pro-culinaria.ru
+      if (allowedReferers.includes(refererOrigin)) {
+        return context.next(); // Пропускаем запрос
       }
     } catch (e) {
-      console.error("Invalid referer URL or parsing error:", referer, e);
+      console.error("Referer parse error:", referer, e);
     }
-  } else {
-    console.log('No referer header found. Blocking.');
   }
 
-  console.log('Blocking request: Referer not allowed or missing.');
-  return new Response('Access Denied: This page is only accessible from allowed sources.', {
+  // Блокируем все остальные случаи
+  console.log('Blocking request: Referer not allowed or missing');
+  return new Response('⛔ Доступ разрешён только с https://pro-culinaria.ru', {
     status: 403,
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
