@@ -1,0 +1,22 @@
+<?xml version="1.0"  encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:creator opf:role="aut" opf:file-as="Panciera, Donata">Donata Panciera</dc:creator>
+<dc:identifier opf:scheme="calibre" id="calibre_id">6624b96f-17c1-4c3c-bfa7-52ff2ddca79a</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">6624b96f-17c1-4c3c-bfa7-52ff2ddca79a</dc:identifier>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (8.4.0) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2020-11-07T23:00:00+00:00</dc:date>
+        <dc:description>&lt;p class="description"&gt;Le tecniche di produzione e di lavorazione del gelato artigianale spiegate da Donata Panciera, Mastro Docente Gelatiere dall'esperienza decennale. Con più di 120 ricette e con numerose fotografie a colori, questo manuale è lo strumento di lavoro essenziale sia per i gelatieri esperti sia per i giovani apprendisti. INDICE TESTUALE Introduzione. La storia del gelato - Il gelato artigianale - Merceologia - I componenti fondamentali di un gelato - La produzione del gelato - Gelati di frutta e sorbetti - Gelati con yogurt, ricotta e formaggi - Sorbetti e gelati con vini e liquori - Sorbetti e gelati dolci-salati nella gelateria e nella ristorazione - Gelati e sorbetti senza zuccheri aggiunti - Il gelato per vegetariani e vegani - I semifreddi del gelatiere - Igiene e normativa. Indice delle ricette.&lt;/p&gt;</dc:description>
+        <dc:publisher>HOEPLI EDITORE</dc:publisher>
+        <dc:title>Il gelato: Tecniche, attrezzature, ricette</dc:title>
+<meta name="calibre:title_sort" content="gelato: Tecniche, attrezzature, ricette, Il"/>
+<dc:identifier opf:scheme="ISBN">9788820398385</dc:identifier>
+<dc:subject>Cooking</dc:subject>
+<dc:subject>Courses &amp; Dishes</dc:subject>
+<dc:subject>Ice Cream; Ices; etc</dc:subject>
+<dc:language>ita</dc:language>
+</metadata>
+    <guide>
+        <reference type="cover" title="Обложка" href="cover.jpg"/>
+    </guide>
+</package>

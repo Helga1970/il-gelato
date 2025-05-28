@@ -1,0 +1,7 @@
+[build]
+  publish = "." # Публикуем корневую папку проекта
+  functions = "netlify/edge-functions" # Указываем папку для Edge Functions
+
+[[edge_functions]]
+  path = "/*" # Edge Function будет срабатывать на все запросы к вашему сайту.
+  function = "check-referer-v2" # Имя вашей Edge Function без расширения .js
