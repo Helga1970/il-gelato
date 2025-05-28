@@ -13,8 +13,8 @@ export default async (request, context) => {
     'http://pro-culinaria.ru',
     'https://www.pro-culinaria.ru',
     'http://www.pro-culinaria.ru',
-    'pro-culinaria.ru',
-    'www.pro-culinaria.ru',
+    // Строки 'pro-culinaria.ru' и 'www.pro-culinaria.ru' были удалены,
+    // так как они никогда не совпадут с `refererOrigin` (который всегда включает протокол).
 
     'https://il-gelato.netlify.app',
     'http://il-gelato.netlify.app',
