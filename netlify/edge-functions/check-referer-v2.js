@@ -13,13 +13,13 @@ export default async (request, context) => {
     'http://pro-culinaria.ru',
     'https://www.pro-culinaria.ru',
     'http://www.pro-culinaria.ru',
-    // Строки 'pro-culinaria.ru' и 'www.pro-culinaria.ru' были удалены,
-    // так как они никогда не совпадут с `refererOrigin` (который всегда включает протокол).
+    'pro-culinaria.ru',
+    'www.pro-culinaria.ru',
 
-    'https://il-gelato.netlify.app',
-    'http://il-gelato.netlify.app',
-    'https://il-gelato.proculinaria-book.ru', // <-- ДОБАВИТЬ ЭТУ СТРОКУ
-    'http://il-gelato.proculinaria-book.ru', // <-- И ЭТУ СТРОКУ
+    'https://il-gelato.proculinaria-book.ru',
+    'http://il-gelato.proculinaria-book.ru',
+    'https://il-gelato.proculinaria-book.ru', // <-- ДОБАВИТЬ ЭТУ СТРОКУ (теперь соответствует il-gelato)
+    'http://il-gelato.proculinaria-book.ru', // <-- И ЭТУ СТРОКУ (теперь соответствует il-gelato)
   ];
 
   if (referer) {
