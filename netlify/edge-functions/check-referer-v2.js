@@ -1,3 +1,5 @@
+// netlify/edge-functions/check-referer-v2.js
+
 export default async (request, context) => {
   const referer = request.headers.get('referer');
   const requestUrl = request.url;
@@ -7,21 +9,22 @@ export default async (request, context) => {
 
   // Разрешённые домены
   const allowedReferers = [
-    // Домены, с которых разрешен переход на ваш сайт
     'https://pro-culinaria.ru',
     'http://pro-culinaria.ru',
     'https://www.pro-culinaria.ru',
     'http://www.pro-culinaria.ru',
+    // Обратите внимание: оригинальный код использует `refererUrl.origin`,
+    // который включает протокол (например, "https://pro-culinaria.ru").
+    // Голые домены ('pro-culinaria.ru', 'www.pro-culinaria.ru')
+    // в этом списке не будут напрямую совпадать с `refererOrigin` при использовании `.includes()`.
+    // Я оставил их как есть, согласно вашему запросу "больше ничего не меняй".
     'pro-culinaria.ru',
     'www.pro-culinaria.ru',
 
-    // Домен Netlify для этого проекта (будет обновлен после первого деплоя)
-    'https://YOUR_NEW_NETLIFY_SUBDOMAIN.netlify.app',
-    'http://YOUR_NEW_NETLIFY_SUBDOMAIN.netlify.app',
-
-    // ВАШ НОВЫЙ ПОЛЬЗОВАТЕЛЬСКИЙ ДОМЕН для Il_gelato
-    'https://il-gelato.proculinaria-book.ru', // <-- ОБНОВЛЕНО
-    'http://il-gelato.proculinaria-book.ru',  // <-- ОБНОВЛЕНО
+    'https://il-gelato.proculinaria-book.ru', // <-- ИЗМЕНЕНО с pesto-book.netlify.app
+    'http://il-gelato.proculinaria-book.ru',  // <-- ИЗМЕНЕНО с pesto-book.netlify.app
+    'https://pesto-book.proculinaria-book.ru', // <-- ДОБАВИТЬ ЭТУ СТРОКУ (оставлено без изменений)
+    'http://pesto-book.proculinaria-book.ru',  // <-- И ЭТУ СТРОКУ (оставлено без изменений)
   ];
 
   if (referer) {
