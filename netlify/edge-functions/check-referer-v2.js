@@ -16,11 +16,11 @@ export default async (request, context) => {
     'pro-culinaria.ru',
     'www.pro-culinaria.ru',
 
-    'https://il-gelato.netlify.app',      // <-- ДОБАВЛЕНО: Netlify домен
-    'http://il-gelato.netlify.app',       // <-- ДОБАВЛЕНО: Netlify домен
+    'https://il-gelato.netlify.app',
+    'http://il-gelato.netlify.app',
 
-    'https://il-gelato.proculinaria-book.ru', // <-- ДОБАВИТЬ ЭТУ СТРОКУ (ваш кастомный домен)
-    'http://il-gelato.proculinaria-book.ru', // <-- И ЭТУ СТРОКУ (ваш кастомный домен)
+    'https://il-gelato.proculinaria-book.ru',
+    'http://il-gelato.proculinaria-book.ru',
   ];
 
   if (referer) {
@@ -41,7 +41,26 @@ export default async (request, context) => {
       console.error("Invalid referer URL or parsing error:", referer, e);
     }
   } else {
-    console.log('No referer header found. Blocking.');
+    // --- ИЗМЕНЕНИЕ НАЧИНАЕТСЯ ЗДЕСЬ ---
+    // Если Referer отсутствует, проверяем, является ли запрос прямым доступом к целевому сайту
+    const targetDomains = [
+        'https://il-gelato.netlify.app',
+        'http://il-gelato.netlify.app',
+        'https://il-gelato.proculinaria-book.ru',
+        'http://il-gelato.proculinaria-book.ru',
+        // Добавьте сюда другие URLы, если они являются целевыми для вашей страницы
+    ];
+
+    const isDirectAccessToTarget = targetDomains.some(domain => requestUrl.startsWith(domain));
+
+    if (isDirectAccessToTarget) {
+        console.log('No referer, but direct access to an allowed target. Allowing.');
+        return context.next();
+    } else {
+        // Если Referer отсутствует И это не прямой доступ к разрешенному целевому сайту
+        console.log('No referer header found. Blocking.');
+    }
+    // --- ИЗМЕНЕНИЕ ЗАВЕРШАЕТСЯ ЗДЕСЬ ---
   }
 
   console.log('Blocking request: Referer not allowed or missing.');
