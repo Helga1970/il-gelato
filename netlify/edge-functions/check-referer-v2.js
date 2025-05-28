@@ -1,3 +1,5 @@
+// netlify/edge-functions/check-referer-v2.js
+
 export default async (request, context) => {
   const referer = request.headers.get('referer');
   const requestUrl = request.url;
@@ -5,12 +7,23 @@ export default async (request, context) => {
   console.log('Incoming request URL:', requestUrl);
   console.log('Referer header:', referer);
 
-  // Только эти источники разрешены
+  // Разрешённые домены
   const allowedReferers = [
+    // Домены, с которых разрешен переход на ваш сайт
     'https://pro-culinaria.ru',
     'http://pro-culinaria.ru',
     'https://www.pro-culinaria.ru',
     'http://www.pro-culinaria.ru',
+    'pro-culinaria.ru',
+    'www.pro-culinaria.ru',
+
+    // Домен Netlify для yassou1, чтобы внутренние ресурсы грузились, если сайт открыт напрямую через него
+    'https://il-gelato.netlify.app',
+    'http://il-gelato.netlify.app',
+
+    // ВАШ НОВЫЙ ПОЛЬЗОВАТЕЛЬСКИЙ ДОМЕН (для внутренних ресурсов сайта yassou)
+    'https://il-gelato.proculinaria-book.ru', // <-- ДОБАВИТЬ ЭТУ СТРОКУ
+    'http://il-gelato.proculinaria-book.ru',  // <-- И ЭТУ СТРОКУ
   ];
 
   if (referer) {
@@ -20,18 +33,22 @@ export default async (request, context) => {
 
       console.log('Parsed Referer Origin:', refererOrigin);
 
-      // Разрешаем только если реферер — pro-culinaria.ru
-      if (allowedReferers.includes(refererOrigin)) {
-        return context.next(); // Пропускаем запрос
+      const isAllowed = allowedReferers.includes(refererOrigin);
+
+      console.log('Is referer allowed?', isAllowed);
+
+      if (isAllowed) {
+        return context.next();
       }
     } catch (e) {
-      console.error("Referer parse error:", referer, e);
+      console.error("Invalid referer URL or parsing error:", referer, e);
     }
+  } else {
+    console.log('No referer header found. Blocking.');
   }
 
-  // Блокируем все остальные случаи
-  console.log('Blocking request: Referer not allowed or missing');
-  return new Response('⛔ Доступ разрешён только с https://pro-culinaria.ru', {
+  console.log('Blocking request: Referer not allowed or missing.');
+  return new Response('Access Denied: This page is only accessible from allowed sources.', {
     status: 403,
     headers: {
       'Content-Type': 'text/plain; charset=utf-8',
