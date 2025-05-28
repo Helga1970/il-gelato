@@ -16,10 +16,11 @@ export default async (request, context) => {
     'pro-culinaria.ru',
     'www.pro-culinaria.ru',
 
-    'https://il-gelato.proculinaria-book.ru',
-    'http://il-gelato.proculinaria-book.ru',
-    'https://il-gelato.proculinaria-book.ru', // <-- ДОБАВИТЬ ЭТУ СТРОКУ
-    'http://il-gelato.proculinaria-book.ru', // <-- И ЭТУ СТРОКУ
+    'https://il-gelato.netlify.app',      // <-- ДОБАВЛЕНО: Netlify домен
+    'http://il-gelato.netlify.app',       // <-- ДОБАВЛЕНО: Netlify домен
+
+    'https://il-gelato.proculinaria-book.ru', // <-- ДОБАВИТЬ ЭТУ СТРОКУ (ваш кастомный домен)
+    'http://il-gelato.proculinaria-book.ru', // <-- И ЭТУ СТРОКУ (ваш кастомный домен)
   ];
 
   if (referer) {
